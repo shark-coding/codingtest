@@ -9,28 +9,22 @@ public class String1919 {
         String input1 = scan.next();
         String input2 = scan.next();
 
-//        char[] input1Array = input1.toCharArray();
-//        char[] input2Array = input2.toCharArray();
+        int[] input1Arr = getAlphabetCount(input1);
+        int[] input2Arr = getAlphabetCount(input2);
 
-        int[] input1Arr = new int[26];
-        int[] input2Arr = new int[26];
-
-        for (int i = 0; i < input1.length(); i++) {
-            input1Arr[input1.charAt(i) - 'a']++;
-        }
-        for (int i = 0; i < input2.length(); i++) {
-            input2Arr[input2.charAt(i) - 'a']++;
-        }
 
         int result = 0;
         for (int i = 0; i < 26; i++) {
-            if(input1Arr[i] > input2Arr[i]) {
-                result += input1Arr[i] - input2Arr[i];
-            }
-            else if(input2Arr[i] > input1Arr[i]) {
-                result += input2Arr[i] - input1Arr[i];
-            }
+            result += Math.abs(input1Arr[i] - input2Arr[i]);
         }
         System.out.println(result);
+    }
+
+    public static int[] getAlphabetCount(String str) {
+        int[] count = new int[26];
+        for (int i = 0 ; i < str.length(); i++) {
+            count[str.charAt(i) - 'a']++;
+        }
+        return count;
     }
 }
